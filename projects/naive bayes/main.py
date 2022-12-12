@@ -39,9 +39,13 @@ def main():
             fout.write("\n")
     fout.close()
 
-    #we know first 100 are positive, 2nd 100 are negative (gold standard)
-
     #TODO: make confusion matrix
+    #we know first 100 are positive, 2nd 100 are negative (gold standard)
+    y_true = ["pos"] * 100 + ["neg"] * 100
+    matrix = utils.confusion_matrix(y_true, predicted, ["pos", "neg"])
+    print(matrix)
+    tp, fp, tn, fn = utils.print_binary_confusion_matrix_labels(matrix)
+
     #TODO compute precision, recall, accuracy
 
 

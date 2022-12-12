@@ -52,7 +52,7 @@ class NaiveBayesClassifier:
             #if probability is the same, predict the class with higher prior
             if prob_negative == prob_positive: 
                 if priors[0] > priors[1]:
-                    predicted.append("pos*")
+                    predicted.append("pos")
                 else:
                     predicted.append("neg")
 
