@@ -1,14 +1,12 @@
 import utilFunctions as utils
 from NaiveBayesClassr import NaiveBayesClassifier
 
-
 def main():
     #read train files
     pos_x_train = utils.read_file("pos_train_sample.txt") #TODO Replace these smaller file names with actual training data
     neg_x_train = utils.read_file("neg_train_sample.txt")
     #pos_x_train = utils.read_file("pos.txt") 
     #neg_x_train = utils.read_file("neg.txt")
-
 
     #create classifier
     nb_clf = NaiveBayesClassifier()
@@ -46,13 +44,11 @@ def main():
     print(matrix)
     tp, fp, tn, fn = utils.print_binary_confusion_matrix_labels(matrix)
 
-    accuracy = utils.accuracy_score(y_true, predicted)
-    precision = utils.binary_precision_score(y_true, predicted)
-    recall = utils.binary_recall_score(y_true, predicted)
+    acc, pre, rec = utils.calc_classifier_stats(tp, fp, tn, fn, predicted)
     
-    print("Accuracy: ", accuracy)
-    print("Precision: ", precision)
-    print("Recall: ", recall)
+    print("Accuracy: ", acc)
+    print("Precision: ", pre)
+    print("Recall: ", rec)
 
 
 if __name__ == "__main__":
