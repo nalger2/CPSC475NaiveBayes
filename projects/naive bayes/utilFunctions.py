@@ -6,6 +6,8 @@ def read_file(fname):
     '''
     Reads a file as a list
     '''
+    nltk.download('movie_reviews')
+    nltk.download('stopwords')
     fin = open(fname, 'r')
     word_list = [line.strip() for line in fin.readlines()] #gets rid of /ns
     fin.close()
@@ -138,8 +140,8 @@ def binary_precision_score(y_true, y_pred, labels=None, pos_label=None):
     if pos_label is None:
         pos_label = labels[0]
 
-    tp_count = 0
-    fp_count = 0
+    tp_count = 1
+    fp_count = 1
 
     for i in range(len(y_true)):
         if y_true[i] == y_pred[i] and y_pred[i] == pos_label:
@@ -147,10 +149,7 @@ def binary_precision_score(y_true, y_pred, labels=None, pos_label=None):
         elif y_pred[i] == pos_label:
             fp_count += 1
 
-    try:
-        precision = tp_count / (tp_count + fp_count)
-    except:
-        precision = 0
+    precision = tp_count / (tp_count + fp_count)
     
     return precision
 
@@ -186,8 +185,8 @@ def binary_recall_score(y_true, y_pred, labels=None, pos_label=None):
     if pos_label is None:
         pos_label = labels[0]
 
-    tp_count = 0
-    fn_count = 0
+    tp_count = 1
+    fn_count = 1
 
     for i in range(len(y_true)):
         if y_true[i] == y_pred[i] and y_pred[i] == pos_label:
@@ -195,9 +194,6 @@ def binary_recall_score(y_true, y_pred, labels=None, pos_label=None):
         elif y_pred[i] != pos_label and y_true[i] == pos_label:
             fn_count += 1
 
-    try:
-        recall = tp_count / (tp_count + fn_count)
-    except:
-        recall = 0
+    recall = tp_count / (tp_count + fn_count)
 
     return recall

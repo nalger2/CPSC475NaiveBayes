@@ -30,7 +30,7 @@ def main():
 
     #test classifier
     predicted = nb_clf.predict(x_test, priors, posteriors, vocabulary)
-    print("\n\nPREDICTIONS:\n", predicted)
+    # print("\n\nPREDICTIONS:\n", predicted)
 
     #write predictions to a file:
     with open("predictions.txt",'w') as fout:
@@ -46,8 +46,13 @@ def main():
     print(matrix)
     tp, fp, tn, fn = utils.print_binary_confusion_matrix_labels(matrix)
 
-    #TODO compute precision, recall, accuracy
-
+    accuracy = utils.accuracy_score(y_true, predicted)
+    precision = utils.binary_precision_score(y_true, predicted)
+    recall = utils.binary_recall_score(y_true, predicted)
+    
+    print("Accuracy: ", accuracy)
+    print("Precision: ", precision)
+    print("Recall: ", recall)
 
 
 if __name__ == "__main__":
